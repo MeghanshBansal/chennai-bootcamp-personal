@@ -1,0 +1,32 @@
+/* Form default */
+.form-default{
+    padding: 0 1.5rem;
+}
+
+.add-space{
+	padding-bottom: 1rem;
+}
+
+/* Add some css on nav */
+.nav-modify{
+	font-size: .875rem;
+}
+
+.nav-pop-up {
+	min-width:400px;
+	display:inline-block;
+}
+
+.nav-item-pad-right{
+	padding-right: 200px;
+}
+
+/* Add some css container */
+.container-padding-top{
+	margin-top: 3.5em;
+}
+
+/* Add some css container body */
+.row-margin-top{
+	margin-top: 1em;
+}

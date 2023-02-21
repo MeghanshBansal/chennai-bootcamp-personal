@@ -1,0 +1,55 @@
+plugins {
+    id 'java'
+}
+
+group 'com'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+def mainClassName = "main.com.playground.Application"
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile 'org.slf4j:slf4j-api:1.7.12'
+    compile 'org.slf4j:slf4j-log4j12:1.7.7'
+    compile "com.sparkjava:spark-core:2.5"
+    compile 'com.sparkjava:spark-debug-tools:0.5'
+    compile group: 'commons-codec', name: 'commons-codec', version: '1.5'
+    compile group: 'com.sparkjava', name: 'spark-template-velocity', version: '2.7.1'
+    compile group: 'org.pac4j', name: 'spark-pac4j', version: '1.2.1'
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.7'
+    compile group: 'joda-time', name: 'joda-time', version: '2.9.4'
+    compile group: 'org.postgresql', name: 'postgresql', version: '9.3-1100-jdbc4'
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.0.1'
+    compile group: 'javax.mail', name: 'mail', version: '1.4.1'
+}
+
+task startServer(type: JavaExec) {
+    main = "main.com.playground.Application"
+    description = "Entering playground"
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+jar {
+    from {
+        (configurations.runtime).collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+    manifest {
+        attributes 'Main-Class': mainClassName
+    }
+}
